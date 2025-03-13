@@ -1,0 +1,96 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "@sanity/eslint-config-studio",
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true,
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+  },
+  "plugins": ["react", "import"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-no-leaked-render": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+        ],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc" },
+        /* NOTE:
+         * This will cause errors for imports with side effects:
+         *
+         *   import './styles/_app.css'
+         *
+         * This is not auto-fixable. Since import order may be important, handle on a case-by-case
+         * basis and escape with `eslint-disable import/order` for that line.
+         */
+        "warnOnUnassignedImports": true,
+      },
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+      },
+    ],
+    "no-multiple-empty-lines": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true,
+      },
+    ],
+    "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { "checksVoidReturn": { "attributes": false } },
+    ],
+    "@typescript-eslint/prefer-nullish-coalescing": [
+      "error",
+      { "ignorePrimitives": { "boolean": true } },
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      { "fixStyle": "inline-type-imports", "disallowTypeAnnotations": false },
+    ],
+    "@typescript-eslint/no-non-null-assertion": "error",
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+    },
+  },
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/disable-type-checked"],
+      "files": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs"],
+    },
+  ],
+}

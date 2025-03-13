@@ -1,0 +1,67 @@
+{
+  "name": "sanity-studio",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "main": "package.json",
+  "author": "Zando Ward <zando@joinleland.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "codegen": "yarn codegen:new && yarn codegen:old",
+    "codegen:new": "sanity schema extract --path dist/schema.json && sanity typegen generate",
+    "codegen:old": "sanity-codegen && node ./scripts/clean-codegen-types.mjs",
+    "commit": "cz",
+    "clean": "rm -rf dist/ node_modules/",
+    "lint": "yarn lint:base ./",
+    "lint:base": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs --quiet",
+    "check-compile": "yarn tsc --noEmit",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/table": "^1.1.2",
+    "@sanity/vision": "^3.78.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-is": "^18.3.1",
+    "sanity": "^3.78.1",
+    "sanity-plugin-tags": "^2.1.1",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.26.0",
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@commitlint/cz-commitlint": "^19.8.0",
+    "@sanity/eslint-config-studio": "^4.0.0",
+    "@types/react": "^18.3.1",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/parser": "^8.23.0",
+    "babel-plugin-transform-vite-meta-env": "^1.0.3",
+    "commitizen": "^4.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.1",
+    "husky": "^9.1.1",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.3",
+    "sanity-codegen": "^0.9.8",
+    "typescript": "^5.7.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
